@@ -7,6 +7,12 @@ const server = express();
 
 server.use(express.json());
 server.use("/accounts", accountsRouter);
+server.use((err, req, res, next) => {
+    console.log(err)
+    res.status(500).json({
+        message: "Something went wrong. Please try again later."
+    })
+})
 
 // welcome message
 server.get("/", (req, res) => {
